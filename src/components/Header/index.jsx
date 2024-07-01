@@ -6,13 +6,13 @@ export function Header() {
     return (
         <Container>
             <Profile>
-                <img src="https://github.com/orodrigogo.png"
+                <img src="https://github.com/felipeslopes2010.png"
                     alt="Foto do usuário"
                 />
 
                 <div>
                     <span>Bem-vindo</span>
-                    <strong>Rodrigo Gonçalves</strong>
+                    <strong>Felipe Kimura</strong>
                 </div>
             </Profile>
             <Logout>
