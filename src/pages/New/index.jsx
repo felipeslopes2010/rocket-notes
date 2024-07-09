@@ -24,13 +24,13 @@ export function New() {
           <TextArea placeholder="Observações" />
 
           <Section title="Links úteis">
-            <NoteItem value={"https://www.rocketseat.com.br/"} />
+            <NoteItem value="https://www.rocketseat.com.br/" />
             <NoteItem isNew />
           </Section>
 
           <Section title="Marcadores">
             <div className="tags">
-              <NoteItem value={"react"} />
+              <NoteItem value="react" />
               <NoteItem isNew placeholder="Novo marcador" />
             </div>
           </Section>
