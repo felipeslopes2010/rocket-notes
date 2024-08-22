@@ -1,6 +1,8 @@
 import { FiMail, FiLock } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
+import { useAuth  } from "../../hooks/auth";
+
 import { Container, Form, Background } from './styles'
 
 import { Input } from '../../components/Input'
@@ -8,6 +10,9 @@ import { Button } from '../../components/Button'
 
 
 export function SignIn() {
+
+    const data = useAuth();
+    
     return (
         <Container>
             <Form>
