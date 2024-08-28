@@ -43,6 +43,19 @@ export function New() {
   }
 
   async function handleNewNote() {
+
+    if(!title) {
+      return alert("Digite o título da nota");
+    }
+
+    if(newLink) {
+      return alert("Você deixou um Link no campo para adicionar, mas não clicou em adicionar. Clique para adicionar ou deixe o campo vazio");
+    }
+
+    if( newTag) {
+      return alert("Você deixou uma Tag no campo para adicionar, mas não clicou em adicionar. Clique para adicionar ou deixe o campo vazio");
+    }
+
       await api.post("/notes", {
         title,
         description,
@@ -50,7 +63,7 @@ export function New() {
         tags
       });
 
-      alert("Nota criada com sucesso!")
+      alert("Nota criada com sucesso!");
       navigate("/");
   }
 
