@@ -35,7 +35,7 @@ export function Home() {
                 <li>
                     <ButtonText
                         title="Todos"
-                        isActive
+                        $isactive
                     />
                 </li>
                 {
