@@ -12,8 +12,10 @@ import { api } from "../../services/api";
 import { Container, Brand, Menu, Search, Content, NewNote } from './styles';
 
 export function Home() {
+    const [search, setSearch] = useState("");
     const [tags, setTags] = useState([]);
     const [tagsSelected, setTagsSelected] = useState([]);
+    const [notes, setNotes] = useState([]);
 
     function handleTagSelected(tagName) {
         const alreadySelected = tagsSelected.includes(tagName);
@@ -34,6 +36,15 @@ export function Home() {
 
         fetchTags();
     }, []);
+
+    useEffect(() => {
+        async function fetchNotes() {
+            const response = await api.get(`/notes?title=${search}&tags=${tagsSelected}`);
+            setNotes(response.data);
+        }
+
+        fetchNotes();
+    }, [tagsSelected, search]);
 
     return (
         <Container>
@@ -65,60 +76,22 @@ export function Home() {
             </Menu>
 
             <Search>
-                <Input placeholder="Pesquisar pelo título" />
+                <Input
+                    placeholder="Pesquisar pelo título"
+                    onChange={e => setSearch(e.target.value)}    
+                />
             </Search>
 
             <Content>
                 <Section title="Minhas Notas">
-                    <Note data={{
-                        title: 'React',
-                        tags: [
-                            { id: '1', name: 'react' },
-                            { id: '2', name: 'rocketseat' }
-                        ]
-                    }}
-                    />
-                                        <Note data={{
-                        title: 'React',
-                        tags: [
-                            { id: '1', name: 'react' },
-                            { id: '2', name: 'rocketseat' }
-                        ]
-                    }}
-                    />
-                                        <Note data={{
-                        title: 'React',
-                        tags: [
-                            { id: '1', name: 'react' },
-                            { id: '2', name: 'rocketseat' }
-                        ]
-                    }}
-                    />
-                                        <Note data={{
-                        title: 'React',
-                        tags: [
-                            { id: '1', name: 'react' },
-                            { id: '2', name: 'rocketseat' }
-                        ]
-                    }}
-                    />
-                                        <Note data={{
-                        title: 'React',
-                        tags: [
-                            { id: '1', name: 'react' },
-                            { id: '2', name: 'rocketseat' }
-                        ]
-                    }}
-                    />
-                                        <Note data={{
-                        title: 'React',
-                        tags: [
-                            { id: '1', name: 'react' },
-                            { id: '2', name: 'rocketseat' }
-                        ]
-                    }}
-                    />
-                    
+                    {
+                        notes.map(note => (
+                            <Note
+                                key={String(note.id)} 
+                                data={note}
+                            />
+                        ))
+                    }
                 </Section>
             </Content>
 
